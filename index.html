@@ -120,9 +120,9 @@
 
   const PRIORITIES = {
     critical: { label: "CRITICAL", color: "#FF2D55", bg: "rgba(255,45,85,0.12)", rank: 0 },
-    high: { label: "HIGH", color: "#FF9500", bg: "rgba(255,149,0,0.12)", rank: 1 },
-    medium: { label: "MEDIUM", color: "#FFD60A", bg: "rgba(255,214,10,0.12)", rank: 2 },
-    low: { label: "LOW", color: "#30D158", bg: "rgba(48,209,88,0.12)", rank: 3 },
+    high:     { label: "HIGH",     color: "#FF9500", bg: "rgba(255,149,0,0.12)",  rank: 1 },
+    medium:   { label: "MEDIUM",   color: "#FFD60A", bg: "rgba(255,214,10,0.12)", rank: 2 },
+    low:      { label: "LOW",      color: "#30D158", bg: "rgba(48,209,88,0.12)",  rank: 3 },
   };
 
   function getUrgencyScore(task) {
@@ -156,7 +156,7 @@
   let loading = true;
   let form = { title: "", assignedBy: "", deadline: "", priority: "high" };
 
-  window.addEventListener("online", () => { online = true; render(); });
+  window.addEventListener("online",  () => { online = true;  render(); });
   window.addEventListener("offline", () => { online = false; render(); });
 
   // ── Firebase live listener ─────────────────────────────
@@ -230,10 +230,10 @@
         return getUrgencyScore(a) - getUrgencyScore(b);
       });
 
-    const pending = tasks.filter(t => !t.done).length;
-    const overdue = tasks.filter(t => !t.done && new Date(t.deadline) < new Date()).length;
+    const pending  = tasks.filter(t => !t.done).length;
+    const overdue  = tasks.filter(t => !t.done && new Date(t.deadline) < new Date()).length;
     const critical = tasks.filter(t => !t.done && t.priority === "critical").length;
-    const done = tasks.filter(t => t.done).length;
+    const done     = tasks.filter(t => t.done).length;
 
     document.getElementById("root").innerHTML = `
       <div class="app">
